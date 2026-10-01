@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEC/O Team</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: white;
+      color: #222;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 40px auto;
+    }
+
+    .person {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      aspect-ratio: 1 / 1;
+      background: #ddd;
+    }
+
+    .person img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .person-info {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      color: white;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      padding: 15px;
+
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .person:hover .person-info {
+      opacity: 1;
+    }
+
+    .person-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .person-institution {
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>DEC/O Team</h1>
+
+  <div class="gallery">
+
+    <!-- We'll add people here -->
+
+  </div>
+
+</body>
+</html>
