@@ -15,17 +15,22 @@ body {
   background: white;
 }
 
+
+    
 .person-info {
   font-family: "Droid Sans", Arial, sans-serif;
 }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+    box-sizing: border-box;
+  padding: 0 4px;
+}
 
     .person {
       position: relative;
@@ -73,6 +78,30 @@ body {
     .person-institution {
       font-size: 15px;
     }
+
+/* Medium screens */
+@media (max-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablets */
+@media (max-width: 650px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Phones */
+@media (max-width: 450px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+    
   </style>
 </head>
 
