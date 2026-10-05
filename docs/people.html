@@ -14,7 +14,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: white;
+      background: black;
     }
 
     .section-heading {
@@ -22,7 +22,7 @@
       font-size: 26px;
       font-weight: 700;
       text-align: center;
-      color: #222;
+      color: white;
       margin: 0 0 20px 0;
     }
 
@@ -95,31 +95,6 @@
       line-height: 1.25;
     }
 
-    /* Temporary placeholder for a team member whose portrait has not yet been added. */
-    .missing-photo {
-      background: #d6bd67;
-      font-family: "Droid Sans", Arial, sans-serif;
-    }
-
-    .missing-initials {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 42px;
-      font-weight: 700;
-      color: #222;
-    }
-
-    .always-visible {
-      opacity: 0;
-    }
-
-    .missing-photo:hover .always-visible {
-      opacity: 1;
-    }
-
     @media (max-width: 900px) {
       .copi-gallery {
         grid-template-columns: repeat(5, 1fr);
@@ -173,9 +148,9 @@
   <div class="section-heading">Co-Principal Investigators</div>
 
   <div class="copi-gallery">
-    <div class="person missing-photo">
-      <div class="missing-initials">LIC</div>
-      <div class="person-info always-visible">
+    <div class="person">
+      <img src="images/people/l-ilsedore-cleeves.jpeg" alt="L. Ilsedore Cleeves">
+      <div class="person-info">
         <div class="person-name">L. Ilsedore Cleeves</div>
         <div class="person-institution">University of Virginia</div>
       </div>
