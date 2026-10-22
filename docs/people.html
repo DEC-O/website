@@ -1,439 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DEC/O Team</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Droid+Sans:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: black;
-    }
-
+    html, body { margin: 0; padding: 0; background: #000; }
+    body { font-family: "Droid Sans", Arial, sans-serif; color: #fff; }
     .section-heading {
-      font-family: "Droid Sans", Arial, sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      text-align: center;
-      color: white;
-      margin: 0 0 20px 0;
+      font-size: 26px; font-weight: 700; text-align: center;
+      margin: 0 0 20px; color: #fff;
     }
-
-    .copi-gallery {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto 45px auto;
-      box-sizing: border-box;
-      padding: 0 4px;
+    .copi-gallery, .gallery {
+      display: grid; gap: 16px; width: 100%;
+      margin-left: auto; margin-right: auto;
+      box-sizing: border-box; padding: 0 4px;
     }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      box-sizing: border-box;
-      padding: 0 4px;
-    }
-
-    .person {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      aspect-ratio: 1 / 1;
-      background: #ddd;
-    }
-
-    .person img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
+    .copi-gallery { grid-template-columns: repeat(5, minmax(0,1fr)); max-width: 1000px; margin-bottom: 45px; }
+    .gallery { grid-template-columns: repeat(6, minmax(0,1fr)); max-width: 1200px; }
+    .person { position: relative; overflow: hidden; border-radius: 8px; aspect-ratio: 1; background: #333; }
+    .person img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .person-info {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 15px;
-      box-sizing: border-box;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      font-family: "Droid Sans", Arial, sans-serif;
+      position: absolute; inset: 0; box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; padding: 12px;
+      background: rgba(0,0,0,0.76); color: #fff;
+      opacity: 0; transition: opacity .25s ease;
     }
-
-    .person:hover .person-info {
-      opacity: 1;
-    }
-
-    .person-name {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .person-institution {
-      font-size: 15px;
-      line-height: 1.25;
-    }
-
+    .person:hover .person-info, .person:focus .person-info,
+    .person:focus-within .person-info { opacity: 1; }
+    .person-name { font-weight: 700; font-size: clamp(14px, 1.6vw, 19px); margin-bottom: 6px; }
+    .person-institution { font-size: clamp(11px, 1.15vw, 14px); line-height: 1.25; overflow-wrap: anywhere; }
     @media (max-width: 900px) {
-      .copi-gallery {
-        grid-template-columns: repeat(5, 1fr);
-      }
-
-      .gallery {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      .gallery { grid-template-columns: repeat(4, minmax(0,1fr)); }
     }
-
     @media (max-width: 650px) {
-      .copi-gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .copi-gallery, .gallery { grid-template-columns: repeat(3, minmax(0,1fr)); }
     }
-
     @media (max-width: 450px) {
-      .copi-gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      /* Touch devices should not rely entirely on hover. */
-      .person-info {
-        opacity: 1;
-        inset: auto 0 0 0;
-        min-height: 38%;
-        justify-content: flex-end;
-      }
-
-      .person-name {
-        font-size: 16px;
-      }
-
-      .person-institution {
-        font-size: 12px;
-      }
+      .copi-gallery, .gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .person-info { inset: auto 0 0; opacity: 1; padding: 9px 6px; }
+      .person-name { font-size: 14px; }
+      .person-institution { font-size: 11px; }
+    }
+    @media (hover: none) {
+      .person-info { inset: auto 0 0; opacity: 1; padding: 9px 6px; }
     }
   </style>
 </head>
-
 <body>
-
-  <div class="section-heading">Co-Principal Investigators</div>
-
+  <h2 class="section-heading">Co-Principal Investigators</h2>
   <div class="copi-gallery">
-    <div class="person">
-      <img src="images/people/l-ilsedore-cleeves.jpeg" alt="L. Ilsedore Cleeves">
+    <div class="person" tabindex="0">
+      <img src="images/people/ilse-cleeves.jpg" alt="L. Ilsedore Cleeves" loading="lazy">
       <div class="person-info">
         <div class="person-name">L. Ilsedore Cleeves</div>
         <div class="person-institution">University of Virginia</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/yuri-aikawa.jpg" alt="Yuri Aikawa">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/yuri-aikawa.jpg" alt="Yuri Aikawa" loading="lazy">
       <div class="person-info">
         <div class="person-name">Yuri Aikawa</div>
         <div class="person-institution">University of Tokyo</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/dana-anderson.jpg" alt="Dana Anderson">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/dana-anderson.jpg" alt="Dana Anderson" loading="lazy">
       <div class="person-info">
         <div class="person-name">Dana Anderson</div>
         <div class="person-institution">U.S. Naval Academy</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/viviana-guzman.jpg" alt="Viviana Guzman">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/viviana-guzman.jpg" alt="Viviana Guzman" loading="lazy">
       <div class="person-info">
         <div class="person-name">Viviana Guzman</div>
         <div class="person-institution">Pontificia Universidad Católica de Chile</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/anna-miotello.jpg" alt="Anna Miotello">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/anna-miotello.jpg" alt="Anna Miotello" loading="lazy">
       <div class="person-info">
         <div class="person-name">Anna Miotello</div>
-        <div class="person-institution">European Southern Observatory</div>
+        <div class="person-institution">European Southern Observatory (Garching)</div>
       </div>
     </div>
   </div>
 
-  <div class="section-heading">Team Members</div>
-
+  <h2 class="section-heading">Team Members</h2>
   <div class="gallery">
-    <div class="person">
-      <img src="images/people/aashish-gupta.png" alt="Aashish Gupta">
+    <div class="person" tabindex="0">
+      <img src="images/people/aashish-gupta.png" alt="Aashish Gupta" loading="lazy">
       <div class="person-info">
         <div class="person-name">Aashish Gupta</div>
         <div class="person-institution">University of Virginia</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/camilo-gonzalez-ruilova.jpg" alt="Camilo González Ruilova">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/camilo-gonzalez-ruilova.jpg" alt="Camilo González Ruilova" loading="lazy">
       <div class="person-info">
         <div class="person-name">Camilo González Ruilova</div>
         <div class="person-institution">Universidad de Santiago de Chile</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/jamila-pegues.png" alt="Jamila Pegues">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/jamila-pegues.png" alt="Jamila Pegues" loading="lazy">
       <div class="person-info">
         <div class="person-name">Jamila Pegues</div>
         <div class="person-institution">University of Virginia</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/charles-law.png" alt="Charles Law">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/charles-law.png" alt="Charles Law" loading="lazy">
       <div class="person-info">
         <div class="person-name">Charles Law</div>
         <div class="person-institution">University of Minnesota · University of Virginia</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/luigi-zallio.jpg" alt="Luigi Zallio">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/luigi-zallio.jpeg" alt="Luigi Zallio" loading="lazy">
       <div class="person-info">
         <div class="person-name">Luigi Zallio</div>
         <div class="person-institution">University of Milan</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/patrick-sheehan.jpeg" alt="Patrick Sheehan">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/patrick-sheehan.jpeg" alt="Patrick Sheehan" loading="lazy">
       <div class="person-info">
         <div class="person-name">Patrick Sheehan</div>
         <div class="person-institution">National Radio Astronomy Observatory</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/alexa-anderson.jpg" alt="Alexa Anderson">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/alexa-anderson.jpg" alt="Alexa Anderson" loading="lazy">
       <div class="person-info">
         <div class="person-name">Alexa Anderson</div>
         <div class="person-institution">University of Hawaiʻi at Mānoa</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/alice-zurlo.jpg" alt="Alice Zurlo">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/alice-zurlo.jpg" alt="Alice Zurlo" loading="lazy">
       <div class="person-info">
         <div class="person-name">Alice Zurlo</div>
         <div class="person-institution">Universidad Diego Portales</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/amina-diop.jpeg" alt="Amina Diop">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/amina-diop.jpeg" alt="Amina Diop" loading="lazy">
       <div class="person-info">
         <div class="person-name">Amina Diop</div>
         <div class="person-institution">University of Virginia</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/carlo-manara.jpg" alt="Carlo Manara">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/carlo-manara.jpg" alt="Carlo Manara" loading="lazy">
       <div class="person-info">
         <div class="person-name">Carlo Manara</div>
-        <div class="person-institution">European Southern Observatory</div>
+        <div class="person-institution">European Southern Observatory (Garching)</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/catherine-walsh.jpg" alt="Catherine Walsh">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/catherine-walsh.jpg" alt="Catherine Walsh" loading="lazy">
       <div class="person-info">
         <div class="person-name">Catherine Walsh</div>
         <div class="person-institution">University of Leeds</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/claudio-hernandez-vera.jpg" alt="Claudio Hernández Vera">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/claudio-hernandez-vera.jpg" alt="Claudio Hernández Vera" loading="lazy">
       <div class="person-info">
         <div class="person-name">Claudio Hernández Vera</div>
-        <div class="person-institution">Pontificia Universidad Católica de Chile · European Southern Observatory, Chile</div>
+        <div class="person-institution">Pontificia Universidad Católica de Chile · European Southern Observatory (Chile)</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/david-wilner.jpg" alt="David Wilner">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/david-wilner.jpg" alt="David Wilner" loading="lazy">
       <div class="person-info">
         <div class="person-name">David Wilner</div>
         <div class="person-institution">Center for Astrophysics | Harvard &amp; Smithsonian</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/deryl-long.jpg" alt="Deryl Long">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/deryl-long.jpg" alt="Deryl Long" loading="lazy">
       <div class="person-info">
         <div class="person-name">Deryl Long</div>
         <div class="person-institution">University of Virginia</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/edwin-bergin.jpg" alt="Edwin Bergin">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/edwin-bergin.jpg" alt="Edwin Bergin" loading="lazy">
       <div class="person-info">
         <div class="person-name">Edwin Bergin</div>
         <div class="person-institution">University of Michigan</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/elizabeth-artur-de-la-villarmois.jpg" alt="Elizabeth Artur de la Villarmois">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/elizabeth-artur-de-la-villarmois.jpg" alt="Elizabeth Artur de la Villarmois" loading="lazy">
       <div class="person-info">
         <div class="person-name">Elizabeth Artur de la Villarmois</div>
-        <div class="person-institution">European Southern Observatory, Chile</div>
+        <div class="person-institution">European Southern Observatory (Chile)</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/geoff-blake.jpg" alt="Geoff Blake">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/felipe-alarcon.jpeg" alt="Felipe Alarcón" loading="lazy">
+      <div class="person-info">
+        <div class="person-name">Felipe Alarcón</div>
+        <div class="person-institution">University of Milan</div>
+      </div>
+    </div>
+
+    <div class="person" tabindex="0">
+      <img src="images/people/geoff-blake.jpg" alt="Geoff Blake" loading="lazy">
       <div class="person-info">
         <div class="person-name">Geoff Blake</div>
         <div class="person-institution">Caltech</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/giovanni-rosotti.jpg" alt="Giovanni Rosotti">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/giovanni-rosotti.jpg" alt="Giovanni Rosotti" loading="lazy">
       <div class="person-info">
         <div class="person-name">Giovanni Rosotti</div>
         <div class="person-institution">University of Milan</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/hauyu-baobab-liu.png" alt="Hauyu Baobab Liu">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/hauyu-baobab-liu.png" alt="Hauyu Baobab Liu" loading="lazy">
       <div class="person-info">
         <div class="person-name">Hauyu Baobab Liu</div>
         <div class="person-institution">National Sun Yat-sen University</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/jenny-bergner.png" alt="Jenny Bergner">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/jenny-bergner.png" alt="Jenny Bergner" loading="lazy">
       <div class="person-info">
         <div class="person-name">Jenny Bergner</div>
         <div class="person-institution">UC Berkeley</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/jenny-calahan.jpg" alt="Jenny Calahan">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/jenny-calahan.jpg" alt="Jenny Calahan" loading="lazy">
       <div class="person-info">
         <div class="person-name">Jenny Calahan</div>
         <div class="person-institution">Center for Astrophysics | Harvard &amp; Smithsonian</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/john-carpenter.jpg" alt="John Carpenter">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/john-carpenter.jpg" alt="John Carpenter" loading="lazy">
       <div class="person-info">
         <div class="person-name">John Carpenter</div>
         <div class="person-institution">Joint ALMA Observatory</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/jonathan-williams.jpg" alt="Jonathan Williams">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/jonathan-williams.jpg" alt="Jonathan Williams" loading="lazy">
       <div class="person-info">
         <div class="person-name">Jonathan Williams</div>
-        <div class="person-institution">\label{instIfA}</div>
+        <div class="person-institution">University of Hawaiʻi at Mānoa</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/karina-mauco.jpg" alt="Karina Mauco">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/karina-mauco.jpg" alt="Karina Mauco" loading="lazy">
       <div class="person-info">
         <div class="person-name">Karina Mauco</div>
-        <div class="person-institution">UNAM, Ensenada · European Southern Observatory</div>
+        <div class="person-institution">UNAM Ensenada · European Southern Observatory (Garching)</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/lucy-evans.jpg" alt="Lucy Evans">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/lucy-evans.jpg" alt="Lucy Evans" loading="lazy">
       <div class="person-info">
         <div class="person-name">Lucy Evans</div>
         <div class="person-institution">University of Leeds</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/luke-keyte.png" alt="Luke Keyte">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/luke-keyte.png" alt="Luke Keyte" loading="lazy">
       <div class="person-info">
         <div class="person-name">Luke Keyte</div>
         <div class="person-institution">Queen Mary University of London</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/marion-villenave.jpg" alt="Marion Villenave">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/maria-jose-colmenares.jpg" alt="Maria Jose Colmenares" loading="lazy">
+      <div class="person-info">
+        <div class="person-name">Maria Jose Colmenares</div>
+        <div class="person-institution">University of Michigan</div>
+      </div>
+    </div>
+
+    <div class="person" tabindex="0">
+      <img src="images/people/marion-villenave.jpg" alt="Marion Villenave" loading="lazy">
       <div class="person-info">
         <div class="person-name">Marion Villenave</div>
-        <div class="person-institution">IPAG, Grenoble</div>
+        <div class="person-institution">IPAG Grenoble</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/miguel-vioque.jpeg" alt="Miguel Vioque">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/matthew-birney.jpg" alt="Matthew Birney" loading="lazy">
+      <div class="person-info">
+        <div class="person-name">Matthew Birney</div>
+        <div class="person-institution">European Southern Observatory (Garching)</div>
+      </div>
+    </div>
+
+    <div class="person" tabindex="0">
+      <img src="images/people/miguel-vioque.jpeg" alt="Miguel Vioque" loading="lazy">
       <div class="person-info">
         <div class="person-name">Miguel Vioque</div>
-        <div class="person-institution">European Southern Observatory</div>
+        <div class="person-institution">European Southern Observatory (Garching)</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/mihkel-kama.jpg" alt="Mihkel Kama">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/mihkel-kama.jpg" alt="Mihkel Kama" loading="lazy">
       <div class="person-info">
         <div class="person-name">Mihkel Kama</div>
         <div class="person-institution">University College London · Tartu Observatory</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/richard-booth.jpg" alt="Richard Booth">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/richard-booth.jpg" alt="Richard Booth" loading="lazy">
       <div class="person-info">
         <div class="person-name">Richard Booth</div>
         <div class="person-institution">University of Leeds</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/sean-andrews.jpg" alt="Sean Andrews">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/sean-andrews.jpg" alt="Sean Andrews" loading="lazy">
       <div class="person-info">
         <div class="person-name">Sean Andrews</div>
         <div class="person-institution">Center for Astrophysics | Harvard &amp; Smithsonian</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/shota-notsu.jpg" alt="Shota Notsu">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/shota-notsu.jpg" alt="Shota Notsu" loading="lazy">
       <div class="person-info">
         <div class="person-name">Shota Notsu</div>
         <div class="person-institution">University of Tokyo · RIKEN</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/sidharth-aroli-veettil.jpeg" alt="Sidharth Aroli Veettil">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/sidharth-aroli-veettil.jpeg" alt="Sidharth Aroli Veettil" loading="lazy">
       <div class="person-info">
         <div class="person-name">Sidharth Aroli Veettil</div>
         <div class="person-institution">Pontificia Universidad Católica de Chile</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/teresa-paneque-carreno.png" alt="Teresa Paneque-Carreno">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/steven-cole-wampler.jpg" alt="Steven Cole Wampler" loading="lazy">
+      <div class="person-info">
+        <div class="person-name">Steven Cole Wampler</div>
+        <div class="person-institution">National Radio Astronomy Observatory</div>
+      </div>
+    </div>
+
+    <div class="person" tabindex="0">
+      <img src="images/people/tamara-molyarova.jpeg" alt="Tamara Molyarova" loading="lazy">
+      <div class="person-info">
+        <div class="person-name">Tamara Molyarova</div>
+        <div class="person-institution">University of Leeds</div>
+      </div>
+    </div>
+
+    <div class="person" tabindex="0">
+      <img src="images/people/teresa-paneque-carreno.png" alt="Teresa Paneque-Carreno" loading="lazy">
       <div class="person-info">
         <div class="person-name">Teresa Paneque-Carreno</div>
         <div class="person-institution">University of Michigan</div>
       </div>
     </div>
-    <div class="person">
-      <img src="images/people/thomas-haworth.jpeg" alt="Thomas Haworth">
+
+    <div class="person" tabindex="0">
+      <img src="images/people/thomas-haworth.jpeg" alt="Thomas Haworth" loading="lazy">
       <div class="person-info">
         <div class="person-name">Thomas Haworth</div>
         <div class="person-institution">Queen Mary University of London</div>
       </div>
     </div>
-  </div>
 
+    <div class="person" tabindex="0">
+      <img src="images/people/hsi-wei-yen.jpg" alt="Hsi-Wei Yen" loading="lazy">
+      <div class="person-info">
+        <div class="person-name">Hsi-Wei Yen</div>
+        <div class="person-institution">ASIAA</div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
